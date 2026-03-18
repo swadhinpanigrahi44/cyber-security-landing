@@ -1,0 +1,1219 @@
+<!doctype html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+    <title>CYBRIGE - Become an Ethical Hacker Masterclass</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00d0ff",
+              accent: "#ff6b00",
+              "background-light": "#f5f8f8",
+              "background-dark": "#0f1f23",
+            },
+            fontFamily: { display: ["Inter", "sans-serif"] },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* =============================================
+         WHATSAPP FLOATING BUTTON — pulse animation
+         ============================================= */
+      @keyframes whatsapp-pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+        }
+        70% {
+          box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+      }
+      .whatsapp-btn {
+        animation: whatsapp-pulse 2.2s infinite;
+      }
+
+      /* =============================================
+         COUNTDOWN TIMER — blink colon separator
+         ============================================= */
+      @keyframes blink-colon {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .timer-colon {
+        animation: blink-colon 1s step-start infinite;
+      }
+
+      /* =============================================
+         TASK 3 — CTA BUTTON PULSE + HOVER ANIMATIONS
+         Applied to .cta-pulse class on Reserve buttons
+         ============================================= */
+      @keyframes cta-glow-pulse {
+        0% {
+          box-shadow:
+            0 0 0 0 rgba(255, 107, 0, 0.55),
+            0 8px 32px rgba(255, 107, 0, 0.25);
+        }
+        60% {
+          box-shadow:
+            0 0 0 12px rgba(255, 107, 0, 0),
+            0 8px 32px rgba(255, 107, 0, 0.25);
+        }
+        100% {
+          box-shadow:
+            0 0 0 0 rgba(255, 107, 0, 0),
+            0 8px 32px rgba(255, 107, 0, 0.25);
+        }
+      }
+      .cta-pulse {
+        animation: cta-glow-pulse 2.8s ease-in-out infinite;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background-color 0.2s ease;
+      }
+      .cta-pulse:hover {
+        transform: scale(1.06);
+        box-shadow:
+          0 0 0 0 rgba(255, 107, 0, 0),
+          0 16px 40px rgba(255, 107, 0, 0.45);
+      }
+      .cta-pulse:active {
+        transform: scale(0.98);
+      }
+
+      /* =============================================
+         TASK 4 — ENROLLMENT POPUP SLIDE-UP ANIMATION
+         ============================================= */
+      @keyframes popup-slide-up {
+        0% {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes popup-slide-down {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+      }
+      .enrollment-popup {
+        animation: popup-slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .enrollment-popup.hide {
+        animation: popup-slide-down 0.35s ease-in forwards;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden"
+  >
+    <!-- ===================== TOP NAVIGATION BAR ===================== -->
+    <header
+      class="fixed top-0 w-full z-50 bg-background-dark/80 backdrop-blur-md border-b border-primary/10"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 sm:h-20">
+          <!-- =============================================
+               TASK 1 — LOGO IN NAVBAR
+               CHANGE YOUR LOGO FILE HERE
+               Replace src="assets/logo.png" with your actual logo image path.
+               You can also adjust the height (h-8) to fit your logo size.
+               ============================================= -->
+          <div class="flex items-center gap-2">
+            <img
+              src="assets/logo.png"
+              alt="CYBRIGE Logo"
+              class="h-8 w-auto object-contain"
+            />
+            <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png above -->
+            <span class="text-xl font-black tracking-tighter text-white"
+              >CYBRIGE</span
+            >
+          </div>
+
+          <nav class="hidden md:flex items-center gap-8">
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#curriculum"
+              >Curriculum</a
+            >
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#bonuses"
+              >Bonuses</a
+            >
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#instructor"
+              >Instructor</a
+            >
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#achievements"
+              >Reviews</a
+            >
+          </nav>
+
+          <!-- RAZORPAY: Nav CTA button — TASK 3: cta-pulse animation added -->
+          <a
+            href="https://pages.razorpay.com/pl_SMfcCRhZwQv49d/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button
+              class="cta-pulse bg-accent hover:bg-accent/90 text-white px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-accent/20"
+            >
+              Reserve My Seat
+            </button>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <div
+              class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full"
+            >
+              <span class="relative flex h-3 w-3">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-3 w-3 bg-accent"
+                ></span>
+              </span>
+              <span
+                class="text-primary text-sm font-bold uppercase tracking-wider"
+                >Only Limited Seats Available</span
+              >
+            </div>
+
+            <!-- =============================================
+                 TASK 1 — LOGO IN HERO (next to brand name)
+                 CHANGE YOUR LOGO FILE HERE
+                 Replace src="assets/logo.png" with your logo path.
+                 Remove this block entirely if you only want the navbar logo.
+                 ============================================= -->
+            <div class="flex items-center gap-3 mb-2">
+              <img
+                src="assets/logo.png"
+                alt="CYBRIGE Logo"
+                class="h-10 w-auto object-contain"
+              />
+              <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png above -->
+            </div>
+
+            <h1
+              class="text-5xl lg:text-7xl font-black leading-tight tracking-tight text-white"
+            >
+              Become an <span class="text-primary">Ethical Hacker</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-xl leading-relaxed">
+              Join Live 2 Hour Ethical Hacking Masterclass in Hindi for Just
+              <span class="text-white font-bold">&#8377;9</span>. Master the
+              secrets of cybersecurity from scratch.
+            </p>
+
+            <!-- RAZORPAY: Hero main CTA — TASK 3: cta-pulse animation added -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://pages.razorpay.com/pl_SMfcCRhZwQv49d/view"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button
+                  class="cta-pulse bg-accent text-white px-8 py-4 rounded-xl font-black text-lg shadow-xl shadow-accent/30"
+                >
+                  Reserve My Seat for &#8377;9
+                </button>
+              </a>
+            </div>
+
+            <!-- COUNTDOWN TIMER — Hero section -->
+            <p class="text-sm font-bold text-primary uppercase tracking-widest">
+              &#9889; Live Webinar Starts In
+            </p>
+            <div
+              class="bg-primary/5 border border-primary/10 p-6 rounded-2xl flex gap-6 max-w-md"
+            >
+              <div class="text-center flex-1">
+                <div class="text-3xl font-black text-white" id="hero-hours">
+                  00
+                </div>
+                <div class="text-xs uppercase text-slate-500 font-bold">
+                  Hours
+                </div>
+              </div>
+              <div class="text-center flex-1 border-x border-primary/10">
+                <div class="text-3xl font-black text-white" id="hero-mins">
+                  00
+                </div>
+                <div class="text-xs uppercase text-slate-500 font-bold">
+                  Mins
+                </div>
+              </div>
+              <div class="text-center flex-1">
+                <div class="text-3xl font-black text-white" id="hero-secs">
+                  00
+                </div>
+                <div class="text-xs uppercase text-slate-500 font-bold">
+                  Secs
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="flex items-center gap-4">
+              <div class="flex -space-x-3">
+                <img
+                  class="w-10 h-10 rounded-full border-2 border-background-dark"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFn850dobJhuKOof37ETP_Sw-NJETL-K4xynzv0NHiV_hn2PRH0fsf_WnWK4ofr5ka6HwOJaroWSC1WcMl8k3kX4Ht1lv9gdGRlHt9Qj7WSgrsPXFtg6MwGLu2PDtZ1QgNQwskE_GtTvZf8Gfxb12r2M25-u5pVr-S_JUgOUN0P3qHUmnXnhPR9-Lfo3zUsbOeVumdKrfWH8x6qFKnNiePGWEVxi58BZq6dui7C6Rw_9qpXqIN-0Ti4emxyhHH_KIQaN3R_0811O8"
+                />
+                <img
+                  class="w-10 h-10 rounded-full border-2 border-background-dark"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyf0Tdqps0I5cY6pHtGCpdQaT8ZSCDvtaqYQtpLT4djpXcoVu8WbdKKg9yhwvvDo3hBevutx-BCiBIlayx6PxzkVFwuqOr10580RrfVGB4lI-1AvlgvoKnos9LXkSRNuOhGC2xeogfk6-wQhtIMfaqK7RigUzqSaU7xAyh_LrOqG11Xlee3U62IxHlxXuz-1S9JHNAbYNz8GtHa0LsdmAxEiXuRcAqAUf71HFIehoHQwaGbvTnUKIOUUfywie9w3OB2DIS7g9ckdc"
+                />
+                <img
+                  class="w-10 h-10 rounded-full border-2 border-background-dark"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBALDdIaHdyE7im5ak2bSkhD4plUuN5-ePjU9c4ZS39Lqwf95Nu0nTj8518khfpVpRMieUKVXu765G4NhxrTFTkEpklcdfbn2kNv708n_FY7h3dm5Kay6WhclAU5Ce_ZLpEfEh8gVwnllZLDR2msPmud-MTlhlwW1c0CwEQ-kvAw5u7_tvJiNnyWFsi7UydAtLken140cLgESymflmeet0YL0xMUZzsPt_dLk1NWPkDyYJcqEw7Z5S51EXF93z7e2gWynKX19ncrTk"
+                />
+                <div
+                  class="w-10 h-10 rounded-full border-2 border-background-dark bg-primary flex items-center justify-center text-[10px] font-black text-background-dark"
+                >
+                  +5k
+                </div>
+              </div>
+              <p class="text-sm font-medium text-slate-400">
+                <span class="text-white font-bold">5000+ Students</span> trained
+                successfully
+              </p>
+            </div>
+          </div>
+
+          <!-- =============================================
+               TASK 2 — HERO IMAGE
+               CHANGE HERO IMAGE HERE
+               Replace the src below with your own image path.
+               Example: src="assets/hero-banner.jpg"
+               Recommended size: 800x600px or wider, any format (jpg/png/webp)
+               ============================================= -->
+          <div class="relative">
+            <div
+              class="absolute -inset-4 bg-primary/20 rounded-full blur-3xl opacity-20"
+            ></div>
+            <img
+              class="relative rounded-3xl border border-primary/20 shadow-2xl shadow-primary/10"
+              alt="High-tech futuristic hacker workstation with multiple monitors"
+              src="assets/hacker.jpeg"
+            />
+            <!-- CHANGE HERO IMAGE HERE — replace the src URL above with your image path -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         TASK 4 — ENROLLMENT POPUP (bottom-left, auto-rotating)
+         HOW TO EDIT:
+           - Names & locations: edit the enrollmentNotifications array in the JS at the bottom
+           - Timing (how often it changes): change the 5000 value (milliseconds) in the JS
+           - Styling: edit the HTML structure below
+         ============================================= -->
+    <div id="enrollment-popup" class="fixed bottom-6 left-6 z-40 hidden">
+      <div
+        class="enrollment-popup bg-background-dark/95 border border-primary/30 p-4 rounded-xl shadow-2xl flex items-center gap-4 backdrop-blur-md max-w-xs"
+      >
+        <div
+          class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0"
+        >
+          <span class="material-symbols-outlined text-primary"
+            >verified_user</span
+          >
+        </div>
+        <div>
+          <p class="text-xs text-slate-400">Recent Enrollment</p>
+          <p class="text-sm font-bold text-white" id="enrollment-text">
+            Rahul just joined from Mumbai
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== CURRICULUM GRID ===================== -->
+    <section class="py-24 bg-slate-900/30" id="curriculum">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-black text-white mb-4">
+            What You Will Learn
+          </h2>
+          <div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="bg-background-dark border border-primary/10 p-8 rounded-2xl hover:border-primary/40 transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform"
+              >language</span
+            >
+            <h3 class="text-xl font-bold text-white mb-3">Website Hacking</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Master SQL injection, XSS, and broken authentication
+              vulnerabilities.
+            </p>
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 p-8 rounded-2xl hover:border-primary/40 transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform"
+              >share</span
+            >
+            <h3 class="text-xl font-bold text-white mb-3">
+              Social Media Hacking
+            </h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Learn how phishing and social engineering works to stay protected.
+            </p>
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 p-8 rounded-2xl hover:border-primary/40 transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform"
+              >shield</span
+            >
+            <h3 class="text-xl font-bold text-white mb-3">Pentesting</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Professional penetration testing methodologies for corporate
+              networks.
+            </p>
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 p-8 rounded-2xl hover:border-primary/40 transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform"
+              >phone_android</span
+            >
+            <h3 class="text-xl font-bold text-white mb-3">Android Hacking</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Exploit vulnerabilities in mobile apps and operating systems.
+            </p>
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 p-8 rounded-2xl hover:border-primary/40 transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform"
+              >bug_report</span
+            >
+            <h3 class="text-xl font-bold text-white mb-3">
+              Bug Bounty Hunting
+            </h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              How to find and report bugs to earn rewards from top companies.
+            </p>
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 p-8 rounded-2xl hover:border-primary/40 transition-all group"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform"
+              >api</span
+            >
+            <h3 class="text-xl font-bold text-white mb-3">
+              API Security Testing
+            </h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Deep dive into securing RESTful APIs and microservices.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BONUSES SECTION ===================== -->
+    <section class="py-24" id="bonuses">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="bg-gradient-to-br from-primary/20 to-transparent p-12 rounded-[2.5rem] border border-primary/20"
+        >
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-black text-white mb-2">
+              Exclusive Bonuses
+            </h2>
+            <p class="text-primary font-bold tracking-widest uppercase text-sm">
+              Total Bonus Value &#8377;1999 &#8211; Included Free
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="bg-background-dark p-8 rounded-2xl text-center space-y-4"
+            >
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto"
+              >
+                <span class="material-symbols-outlined text-3xl text-primary"
+                  >groups</span
+                >
+              </div>
+              <h4 class="text-lg font-bold text-white">
+                Private VIP Community
+              </h4>
+              <p class="text-slate-400 text-sm">
+                Lifetime access to our network of professional hackers.
+              </p>
+            </div>
+            <div
+              class="bg-background-dark p-8 rounded-2xl text-center space-y-4"
+            >
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto"
+              >
+                <span class="material-symbols-outlined text-3xl text-primary"
+                  >handyman</span
+                >
+              </div>
+              <h4 class="text-lg font-bold text-white">Software Tool Kit</h4>
+              <p class="text-slate-400 text-sm">
+                A curated collection of essential pentesting tools.
+              </p>
+            </div>
+            <div
+              class="bg-background-dark p-8 rounded-2xl text-center space-y-4"
+            >
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto"
+              >
+                <span class="material-symbols-outlined text-3xl text-primary"
+                  >workspace_premium</span
+                >
+              </div>
+              <h4 class="text-lg font-bold text-white">
+                Certificate of Completion
+              </h4>
+              <p class="text-slate-400 text-sm">
+                Showcase your achievement with a verified certificate.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STUDENT ACHIEVEMENTS ===================== -->
+    <section class="py-24 bg-primary/5" id="achievements">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-black text-white text-center mb-12">
+          Proud Student Achievements
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div
+            class="bg-background-dark border border-primary/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl"
+          >
+            <img
+              class="w-full object-cover"
+              src="assets/yash.jpg"
+              alt="Student LinkedIn achievement 1"
+            />
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl"
+          >
+            <img
+              class="w-full object-cover"
+              src="assets/suman.jpg"
+              alt="Student LinkedIn achievement 2"
+            />
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl"
+          >
+            <img
+              class="w-full object-cover"
+              src="assets/ronak.jpg"
+              alt="Student LinkedIn achievement 3"
+            />
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl"
+          >
+            <img
+              class="w-full object-cover"
+              src="assets/prit.jpg"
+              alt="Student LinkedIn achievement 4"
+            />
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl"
+          >
+            <img
+              class="w-full object-cover"
+              src="assets/asu.jpg"
+              alt="Student LinkedIn achievement 5"
+            />
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl"
+          >
+            <img
+              class="w-full object-cover"
+              src="assets/sameer.jpg"
+              alt="Student LinkedIn achievement 6"
+            />
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl"
+          >
+            <img
+              class="w-full object-cover"
+              src="assets/ronak_kumar.jpg"
+              alt="Student LinkedIn achievement 7"
+            />
+          </div>
+          <div
+            class="bg-background-dark border border-primary/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl"
+          >
+            <img
+              class="w-full object-cover"
+              src="assets/big_win.jpg"
+              alt="Student LinkedIn achievement 8"
+            />
+          </div>
+        </div>
+
+        <!-- Student Testimonials -->
+        <div class="mb-8 text-center">
+          <h3 class="text-2xl font-black text-white mb-2">
+            Student Testimonials
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Real students sharing their learning experience.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <a
+            href="https://www.youtube.com/watch?v=bvYwZ_YgBZs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative rounded-2xl overflow-hidden aspect-video bg-slate-800 block cursor-pointer"
+          >
+            <img
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-300"
+              src="https://img.youtube.com/vi/bvYwZ_YgBZs/hqdefault.jpg"
+              alt="Student testimonial 1"
+            />
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center gap-3"
+            >
+              <div
+                class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform"
+              >
+                <svg
+                  class="w-6 h-6 text-white ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <span
+                class="text-white text-xs font-bold uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full"
+                >Watch on YouTube</span
+              >
+            </div>
+            <div class="absolute bottom-3 left-3">
+              <p class="text-white font-bold text-sm">Gaurav</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.youtube.com/shorts/hZDIok286Dk"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative rounded-2xl overflow-hidden aspect-video bg-slate-800 block cursor-pointer"
+          >
+            <img
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-300"
+              src="https://img.youtube.com/vi/hZDIok286Dk/hqdefault.jpg"
+              alt="Student testimonial 2"
+            />
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center gap-3"
+            >
+              <div
+                class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform"
+              >
+                <svg
+                  class="w-6 h-6 text-white ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <span
+                class="text-white text-xs font-bold uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full"
+                >Watch on YouTube</span
+              >
+            </div>
+            <div class="absolute bottom-3 left-3">
+              <p class="text-white font-bold text-sm">Khadvi</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.youtube.com/shorts/qSelaOHKoek"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative rounded-2xl overflow-hidden aspect-video bg-slate-800 block cursor-pointer"
+          >
+            <img
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-300"
+              src="https://img.youtube.com/vi/qSelaOHKoek/hqdefault.jpg"
+              alt="Student testimonial 3"
+            />
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center gap-3"
+            >
+              <div
+                class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform"
+              >
+                <svg
+                  class="w-6 h-6 text-white ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <span
+                class="text-white text-xs font-bold uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full"
+                >Watch on YouTube</span
+              >
+            </div>
+            <div class="absolute bottom-3 left-3">
+              <p class="text-white font-bold text-sm">Pratik</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.youtube.com/shorts/5eiME3ndOHE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative rounded-2xl overflow-hidden aspect-video bg-slate-800 block cursor-pointer"
+          >
+            <img
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-300"
+              src="https://img.youtube.com/vi/5eiME3ndOHE/hqdefault.jpg"
+              alt="Student testimonial 4"
+            />
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center gap-3"
+            >
+              <div
+                class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform"
+              >
+                <svg
+                  class="w-6 h-6 text-white ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <span
+                class="text-white text-xs font-bold uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full"
+                >Watch on YouTube</span
+              >
+            </div>
+            <div class="absolute bottom-3 left-3">
+              <p class="text-white font-bold text-sm">Sagar</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== INSTRUCTOR SECTION ===================== -->
+    <section class="py-24 bg-slate-900/40" id="instructor">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <div class="w-full md:w-1/3">
+            <div class="relative">
+              <div
+                class="absolute inset-0 bg-primary/20 blur-2xl rounded-full"
+              ></div>
+              <!-- CHANGE TRAINER PHOTO HERE — replace assets/trainer.jpg with your photo path -->
+              <img
+                class="relative w-full aspect-square object-cover rounded-[2rem] border-2 border-primary/30"
+                alt="Anand Kumar Choubey speaking at a cybersecurity event"
+                src="assets/trainer.jpg"
+              />
+            </div>
+          </div>
+          <div class="w-full md:w-2/3 space-y-6">
+            <h2 class="text-4xl font-black text-white leading-tight">
+              Meet Your Instructor: <br /><span class="text-primary"
+                >Anand Kumar Choubey</span
+              >
+            </h2>
+            <p class="text-lg text-slate-300 leading-relaxed">
+              I am
+              <span class="text-white font-bold"
+                >Certified Ethical Hacker (CEH)</span
+              >
+              and
+              <span class="text-white font-bold"
+                >eLearnSecurity Junior Penetration Tester (eJPT)</span
+              >
+              with a strong passion for cybersecurity and ethical hacking.
+              Founder of
+              <span class="text-white font-bold">Cybrige Solutions</span>,
+              dedicated to spreading cybersecurity awareness and helping
+              beginners understand how cyber threats work and how systems can be
+              protected.<br /><br />
+              Through practical workshops and live training sessions,
+              <span class="text-white font-bold">Anand Kumar Choubey</span> has
+              trained more than
+              <span class="text-primary font-bold">5000+ students</span> across
+              India and internationally, helping them build foundational
+              knowledge in ethical hacking, cybersecurity, and digital security.
+              With a focus on simple explanations and real-world examples, his
+              goal is to make cybersecurity accessible for students, beginners,
+              and professionals who want to start their journey in ethical
+              hacking.<br /><br />
+              Helped thousands of students start their cybersecurity journey
+              through practical workshops.
+              <br /><br />
+              <span class="inline-flex flex-wrap gap-2">
+                <span
+                  class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full border border-primary/20"
+                  >Ethical Hacking</span
+                >
+                <span
+                  class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full border border-primary/20"
+                  >Bug Bounty Hunter</span
+                >
+                <span
+                  class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full border border-primary/20"
+                  >Web Pentesting</span
+                >
+                <span
+                  class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full border border-primary/20"
+                  >API Security</span
+                >
+                <span
+                  class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full border border-primary/20"
+                  >AI Security</span
+                >
+              </span>
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+              <div
+                class="flex items-center gap-3 bg-background-dark p-4 rounded-xl border border-primary/10"
+              >
+                <span class="material-symbols-outlined text-primary"
+                  >verified</span
+                >
+                <span class="text-white font-bold text-sm">CEH Certified</span>
+              </div>
+              <div
+                class="flex items-center gap-3 bg-background-dark p-4 rounded-xl border border-primary/10"
+              >
+                <span class="material-symbols-outlined text-primary"
+                  >security</span
+                >
+                <span class="text-white font-bold text-sm"
+                  >eJPT Professional</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORKSHOP DETAILS ===================== -->
+    <section class="py-24 bg-background-dark border-y border-primary/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="bg-primary/5 p-8 rounded-2xl border border-primary/10 text-center"
+          >
+            <div
+              class="text-slate-400 text-xs uppercase font-bold tracking-widest mb-2"
+            >
+              Duration
+            </div>
+            <div class="text-2xl font-black text-white">2 Hours</div>
+          </div>
+          <div
+            class="bg-primary/5 p-8 rounded-2xl border border-primary/10 text-center"
+          >
+            <div
+              class="text-slate-400 text-xs uppercase font-bold tracking-widest mb-2"
+            >
+              Language
+            </div>
+            <div class="text-2xl font-black text-white">Hindi</div>
+          </div>
+          <div
+            class="bg-primary/5 p-8 rounded-2xl border border-primary/10 text-center"
+          >
+            <div
+              class="text-slate-400 text-xs uppercase font-bold tracking-widest mb-2"
+            >
+              Mode
+            </div>
+            <div class="text-2xl font-black text-white">Live Workshop</div>
+          </div>
+          <div
+            class="bg-accent/10 p-8 rounded-2xl border border-accent/20 text-center"
+          >
+            <div
+              class="text-accent text-xs uppercase font-bold tracking-widest mb-2"
+            >
+              Special Price
+            </div>
+            <div class="text-2xl font-black text-white">&#8377;9</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FINAL CTA SECTION ===================== -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div
+          class="bg-gradient-to-br from-primary via-primary/80 to-accent p-12 rounded-[3rem] text-center shadow-2xl shadow-primary/20"
+        >
+          <h2 class="text-4xl sm:text-5xl font-black text-background-dark mb-6">
+            Start Your Ethical Hacking Journey Today
+          </h2>
+          <p
+            class="text-background-dark/80 text-lg font-bold mb-10 max-w-xl mx-auto"
+          >
+            Don't wait for the next breach to happen. Secure your spot in the
+            most practical hacking workshop.
+          </p>
+          <!-- RAZORPAY: Final CTA — TASK 3: cta-pulse animation added -->
+          <a
+            href="https://pages.razorpay.com/pl_SMfcCRhZwQv49d/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button
+              class="cta-pulse bg-background-dark text-white px-10 py-5 rounded-2xl font-black text-xl shadow-2xl"
+            >
+              Reserve My Seat for &#8377;9
+            </button>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bg-background-dark border-t border-primary/10 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-8"
+        >
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png with your logo path -->
+              <img
+                src="assets/logo.png"
+                alt="CYBRIGE Logo"
+                class="h-6 w-auto object-contain"
+              />
+              <span
+                class="text-lg font-black tracking-tighter text-white uppercase"
+                >CYBRIGE SOLUTIONS</span
+              >
+            </div>
+            <p class="text-slate-500 text-sm">
+              &#169; 2023 Cybrige Solutions. All rights reserved.
+            </p>
+          </div>
+
+          <!-- SOCIAL MEDIA ICONS — Footer -->
+          <div class="flex gap-4">
+            <a
+              href="https://www.facebook.com/cybrigesolutions?rdid=2P8ErBdIiYsLSKdJ&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AYoUtbFND%2F#"
+              aria-label="Facebook"
+              class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all"
+            >
+              <svg
+                class="size-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/cybrige_solutions/"
+              aria-label="Instagram"
+              class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all"
+            >
+              <svg
+                class="size-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/cybrige-solutionss/?viewAsMember=true"
+              aria-label="LinkedIn"
+              class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all"
+            >
+              <svg
+                class="size-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@cybrige"
+              aria-label="YouTube"
+              class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all"
+            >
+              <svg
+                class="size-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <br /><br /><br />
+    </footer>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a
+      href="https://wa.me/918882884212?text=Hi%2C%20I%20want%20to%20join%20the%20Cybersecurity%20Masterclass."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+      class="whatsapp-btn fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl"
+      style="background-color: #25d366"
+    >
+      <svg class="w-7 h-7" fill="white" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <!-- =============================================
+         COUNTDOWN TIMER — JavaScript
+         CHANGE: Update the deadline date to your actual workshop date/time.
+         Format: 'YYYY-MM-DDTHH:MM:SS+05:30'  (IST = +05:30)
+         ============================================= -->
+    <script>
+      (function () {
+        "use strict";
+
+        function pad(n) {
+          return String(n).padStart(2, "0");
+        }
+
+        // CHANGE THIS DATE to your actual workshop date and time (IST)
+        var deadline = new Date("2026-03-25T18:00:00+05:30").getTime();
+
+        function tick() {
+          var diff = deadline - Date.now();
+          if (diff < 0) diff = 0;
+          var totalSecs = Math.floor(diff / 1000);
+          var hh = Math.floor(totalSecs / 3600);
+          var mm = Math.floor((totalSecs % 3600) / 60);
+          var ss = totalSecs % 60;
+          document.getElementById("hero-hours").textContent = pad(hh);
+          document.getElementById("hero-mins").textContent = pad(mm);
+          document.getElementById("hero-secs").textContent = pad(ss);
+        }
+
+        tick();
+        setInterval(tick, 1000);
+      })();
+    </script>
+
+    <!-- =============================================
+         TASK 4 — ENROLLMENT POPUP JavaScript
+         
+         HOW TO CUSTOMIZE:
+         1. CHANGE NAMES & LOCATIONS:
+            Edit the enrollmentNotifications array below.
+            Each entry is: "Name just joined from City"
+            You can add, remove, or change any entry.
+         
+         2. CHANGE POPUP TIMING:
+            Find the line: var POPUP_INTERVAL = 5000;
+            Change 5000 to any number of milliseconds.
+            5000 = 5 seconds, 8000 = 8 seconds, etc.
+         
+         3. CHANGE HOW LONG POPUP STAYS VISIBLE:
+            Find: var POPUP_VISIBLE = 3500;
+            Change 3500 to how long (ms) it should stay before hiding.
+         ============================================= -->
+    <script>
+      (function () {
+        "use strict";
+
+        // =============================================
+        // EDIT NAMES AND LOCATIONS HERE
+        // Add or change entries in this array.
+        // Format: "Name just joined from City"
+        // =============================================
+        var enrollmentNotifications = [
+          "Rahul just joined from Mumbai",
+          "Priya just joined from Delhi",
+          "Arjun just joined from Bangalore",
+          "Sneha just joined from Hyderabad",
+          "Vikram just joined from Chennai",
+          "Anjali just joined from Pune",
+          "Rohit just joined from Kolkata",
+          "Divya just joined from Ahmedabad",
+          "Karan just joined from Jaipur",
+          "Pooja just joined from Lucknow",
+          "Amit just joined from Surat",
+          "Neha just joined from Bhopal",
+          "Suresh just joined from Indore",
+          "Kavya just joined from Nagpur",
+          "Manish just joined from Patna",
+          "Riya just joined from Chandigarh",
+          "Deepak just joined from Coimbatore",
+          "Ananya just joined from Kochi",
+          "Sanjay just joined from Vadodara",
+          "Megha just joined from Visakhapatnam",
+          "Nikhil just joined from Agra",
+          "Ishaan just joined from Nashik",
+          "Kritika just joined from Rajkot",
+          "Varun just joined from Meerut",
+          "Shreya just joined from Faridabad",
+          "Aditya just joined from Ghaziabad",
+          "Tanvi just joined from Noida",
+          "Siddharth just joined from Thane",
+          "Lakshmi just joined from Mysuru",
+          "Harshit just joined from Ranchi",
+        ];
+
+        // =============================================
+        // CHANGE POPUP TIMING HERE
+        // POPUP_INTERVAL: how often a new notification appears (milliseconds)
+        // POPUP_VISIBLE:  how long the popup stays visible before sliding away
+        // =============================================
+        var POPUP_INTERVAL = 5000; // 5 seconds between each notification
+        var POPUP_VISIBLE = 3500; // popup stays visible for 3.5 seconds
+
+        var popup = document.getElementById("enrollment-popup");
+        var textEl = document.getElementById("enrollment-text");
+        var currentIndex = Math.floor(
+          Math.random() * enrollmentNotifications.length,
+        );
+        var hideTimer = null;
+
+        function showNotification() {
+          // Pick next entry (cycles through the array)
+          currentIndex = (currentIndex + 1) % enrollmentNotifications.length;
+          textEl.textContent = enrollmentNotifications[currentIndex];
+
+          // Reset animation by removing and re-adding the class
+          var inner = popup.querySelector(".enrollment-popup");
+          inner.classList.remove("hide");
+
+          // Show the popup
+          popup.classList.remove("hidden");
+
+          // Force reflow so animation restarts
+          void inner.offsetWidth;
+
+          // Hide after POPUP_VISIBLE milliseconds
+          if (hideTimer) clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () {
+            inner.classList.add("hide");
+            // After slide-down animation finishes, hide the element
+            setTimeout(function () {
+              popup.classList.add("hidden");
+            }, 380);
+          }, POPUP_VISIBLE);
+        }
+
+        // Wait 2 seconds before showing the first one, then repeat every POPUP_INTERVAL
+        setTimeout(function () {
+          showNotification();
+          setInterval(showNotification, POPUP_INTERVAL);
+        }, 2000);
+      })();
+    </script>
+  </body>
+</html>
