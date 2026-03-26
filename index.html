@@ -42,9 +42,7 @@
     </script>
 
     <style>
-      /* =============================================
-         WHATSAPP FLOATING BUTTON — pulse animation
-         ============================================= */
+      /* WHATSAPP FLOATING BUTTON */
       @keyframes whatsapp-pulse {
         0% {
           box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
@@ -60,9 +58,7 @@
         animation: whatsapp-pulse 2.2s infinite;
       }
 
-      /* =============================================
-         COUNTDOWN TIMER — blink colon separator
-         ============================================= */
+      /* COUNTDOWN TIMER */
       @keyframes blink-colon {
         0%,
         100% {
@@ -76,10 +72,7 @@
         animation: blink-colon 1s step-start infinite;
       }
 
-      /* =============================================
-         TASK 3 — CTA BUTTON PULSE + HOVER ANIMATIONS
-         Applied to .cta-pulse class on Reserve buttons
-         ============================================= */
+      /* CTA BUTTON PULSE */
       @keyframes cta-glow-pulse {
         0% {
           box-shadow:
@@ -115,8 +108,186 @@
       }
 
       /* =============================================
-         TASK 4 — ENROLLMENT POPUP SLIDE-UP ANIMATION
-         ============================================= */
+      HERO LAYOUT — Mobile image first, Desktop balanced
+      ============================================= */
+
+      /* Mobile: stack vertically, image on top */
+      .hero-grid {
+        display: flex;
+        flex-direction: column-reverse; /* image appears first on mobile */
+      }
+
+      /* Desktop: side-by-side, image slightly higher */
+      @media (min-width: 1024px) {
+        .hero-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+          align-items: start; /* pulls image up, better optical balance */
+        }
+        .hero-image-col {
+          margin-top: -2rem; /* fine-tune: lifts image up slightly */
+        }
+      }
+
+      /* =============================================
+      PRICE HIGHLIGHT — Anchoring + Loss aversion
+      ============================================= */
+      @keyframes price-shimmer {
+        0% {
+          text-shadow: 0 0 0px rgba(0, 208, 255, 0);
+        }
+        50% {
+          text-shadow:
+            0 0 16px rgba(0, 208, 255, 0.5),
+            0 0 32px rgba(0, 208, 255, 0.2);
+        }
+        100% {
+          text-shadow: 0 0 0px rgba(0, 208, 255, 0);
+        }
+      }
+      .price-highlight {
+        animation: price-shimmer 3s ease-in-out infinite;
+      }
+      .price-anchor {
+        position: relative;
+        display: inline-block;
+      }
+      .price-anchor::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 2px;
+        background: rgba(239, 68, 68, 0.7); /* red strikethrough */
+        transform: rotate(-8deg);
+      }
+
+      /* =============================================
+   CYBERSECURITY THEME — Professional hacker environment
+   ============================================= */
+
+      /* 1. Subtle grid overlay on the whole page */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 208, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 208, 255, 0.03) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* 2. Scanline effect on hero section only */
+      .hero-scanline {
+        position: relative;
+      }
+      .hero-scanline::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(0, 208, 255, 0.012) 3px,
+          rgba(0, 208, 255, 0.012) 4px
+        );
+        pointer-events: none;
+        z-index: 1;
+        border-radius: inherit;
+      }
+
+      /* 3. Terminal-style flicker on hero H1 — subtle, one-time */
+      @keyframes text-flicker {
+        0% {
+          opacity: 1;
+        }
+        2% {
+          opacity: 0.85;
+        }
+        4% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        82% {
+          opacity: 0.92;
+        }
+        84% {
+          opacity: 1;
+        }
+      }
+      .hero-title {
+        animation: text-flicker 6s ease-in-out infinite;
+      }
+
+      /* 4. Neon glow on primary color elements */
+      .neon-glow {
+        text-shadow:
+          0 0 20px rgba(0, 208, 255, 0.4),
+          0 0 40px rgba(0, 208, 255, 0.15);
+      }
+
+      /* 5. Terminal-style card hover — green border flash */
+      .curriculum-card:hover {
+        border-color: rgba(0, 208, 255, 0.5) !important;
+        box-shadow:
+          0 0 24px rgba(0, 208, 255, 0.08),
+          inset 0 0 24px rgba(0, 208, 255, 0.03);
+      }
+
+      /* 6. Custom cursor — crosshair for hacker feel */
+      body {
+        cursor: crosshair;
+      }
+      a,
+      button {
+        cursor: pointer;
+      }
+
+      /* 7. Glowing primary text on hover for nav links */
+      nav a:hover {
+        text-shadow: 0 0 12px rgba(0, 208, 255, 0.6);
+      }
+
+      /* 8. Hero image — subtle neon border glow animation */
+      @keyframes border-glow {
+        0%,
+        100% {
+          box-shadow:
+            0 0 20px rgba(0, 208, 255, 0.1),
+            0 0 60px rgba(0, 208, 255, 0.05);
+        }
+        50% {
+          box-shadow:
+            0 0 40px rgba(0, 208, 255, 0.2),
+            0 0 80px rgba(0, 208, 255, 0.08);
+        }
+      }
+      .hero-img-glow {
+        animation: border-glow 4s ease-in-out infinite;
+      }
+
+      /* 9. Announcement bar — terminal blink on the spot count */
+      @keyframes terminal-blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .terminal-blink {
+        animation: terminal-blink 1.2s step-start infinite;
+      }
+
+      /* ENROLLMENT POPUP */
       @keyframes popup-slide-up {
         0% {
           opacity: 0;
@@ -155,19 +326,13 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 sm:h-20">
-          <!-- =============================================
-               TASK 1 — LOGO IN NAVBAR
-               CHANGE YOUR LOGO FILE HERE
-               Replace src="assets/logo.png" with your actual logo image path.
-               You can also adjust the height (h-8) to fit your logo size.
-               ============================================= -->
+          <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png -->
           <div class="flex items-center gap-2">
             <img
               src="assets/logo.png"
               alt="CYBRIGE Logo"
               class="h-8 w-auto object-contain"
             />
-            <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png above -->
             <span class="text-xl font-black tracking-tighter text-white"
               >CYBRIGE</span
             >
@@ -196,7 +361,6 @@
             >
           </nav>
 
-          <!-- RAZORPAY: Nav CTA button — TASK 3: cta-pulse animation added -->
           <a
             href="https://pages.razorpay.com/pl_SMfcCRhZwQv49d/view"
             target="_blank"
@@ -213,9 +377,9 @@
     </header>
 
     <!-- ===================== HERO SECTION ===================== -->
-    <section class="relative pt-32 pb-20 overflow-hidden">
+    <section class="relative pt-36 pb-20 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="hero-grid">
           <div class="space-y-8">
             <div
               class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full"
@@ -234,25 +398,14 @@
               >
             </div>
 
-            <!-- =============================================
-                 TASK 1 — LOGO IN HERO (next to brand name)
-                 CHANGE YOUR LOGO FILE HERE
-                 Replace src="assets/logo.png" with your logo path.
-                 Remove this block entirely if you only want the navbar logo.
-                 ============================================= -->
-            <div class="flex items-center gap-3 mb-2">
-              <img
-                src="assets/logo.png"
-                alt="CYBRIGE Logo"
-                class="h-10 w-auto object-contain"
-              />
-              <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png above -->
-            </div>
+            <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png -->
+            <div class="flex items-center gap-3 mb-2"></div>
 
             <h1
               class="text-5xl lg:text-7xl font-black leading-tight tracking-tight text-white"
             >
-              Become an <span class="text-primary">Ethical Hacker</span>
+              Do you want to Become an
+              <span class="text-primary neon-glow">Ethical Hacker</span>?
             </h1>
             <p class="text-xl text-slate-400 max-w-xl leading-relaxed">
               Join Live 2 Hour Ethical Hacking Masterclass in Hindi for Just
@@ -260,8 +413,52 @@
               secrets of cybersecurity from scratch.
             </p>
 
-            <!-- RAZORPAY: Hero main CTA — TASK 3: cta-pulse animation added -->
-            <div class="flex flex-col sm:flex-row gap-4">
+            <!-- =============================================
+                 CRO CHANGE 2 — PRICE ANCHOR + CTA BLOCK
+                 ₹499 vs ₹9 comparison box above the button
+                 ============================================= -->
+            <div class="flex flex-col gap-3">
+              <!-- Price comparison -->
+              <div
+                class="flex items-center gap-5 bg-primary/5 border border-primary/10 px-5 py-3 rounded-xl w-fit"
+              >
+                <!-- ANCHOR: ₹499 with angled red strikethrough -->
+                <div class="text-center">
+                  <span
+                    class="text-slate-500 text-xs uppercase font-bold tracking-widest block mb-1"
+                    >Regular Price</span
+                  >
+                  <span class="price-anchor text-slate-500 text-xl font-bold"
+                    >&#8377;499</span
+                  >
+                </div>
+
+                <!-- Divider -->
+                <div class="flex flex-col items-center gap-1">
+                  <div class="w-px h-8 bg-primary/20"></div>
+                </div>
+
+                <!-- DISCOUNTED: ₹9 with shimmer glow -->
+                <div class="text-center">
+                  <span
+                    class="text-primary text-xs uppercase font-bold tracking-widest block mb-1"
+                    >Today Only</span
+                  >
+                  <span class="price-highlight text-white text-2xl font-black"
+                    >&#8377;9</span
+                  >
+                </div>
+
+                <!-- Savings badge -->
+                <div
+                  class="bg-accent/15 border border-accent/30 px-2 py-1 rounded-lg text-center"
+                >
+                  <span class="text-accent text-xs font-black block">SAVE</span>
+                  <span class="text-accent text-sm font-black">98%</span>
+                </div>
+              </div>
+
+              <!-- CTA Button -->
               <a
                 href="https://pages.razorpay.com/pl_SMfcCRhZwQv49d/view"
                 target="_blank"
@@ -273,9 +470,15 @@
                   Reserve My Seat for &#8377;9
                 </button>
               </a>
+
+              <!-- Trust microcopy -->
+              <p class="text-slate-400 text-xs font-medium">
+                🔒 Secure payment via Razorpay &nbsp;·&nbsp; Save &#8377;490 —
+                only for live attendees
+              </p>
             </div>
 
-            <!-- COUNTDOWN TIMER — Hero section -->
+            <!-- COUNTDOWN TIMER -->
             <p class="text-sm font-bold text-primary uppercase tracking-widest">
               &#9889; Live Webinar Starts In
             </p>
@@ -308,6 +511,15 @@
               </div>
             </div>
 
+            <!-- =============================================
+                 CRO CHANGE 3 — URGENCY LINE BELOW TIMER
+                 ============================================= -->
+            <p class="text-slate-400 text-xs font-medium max-w-md -mt-4">
+              <span class="text-primary font-bold">⚠</span>
+              Price locks in at &#8377;9 only until the session fills. Seats are
+              limited to ensure live interaction quality.
+            </p>
+
             <!-- Social Proof -->
             <div class="flex items-center gap-4">
               <div class="flex -space-x-3">
@@ -330,41 +542,29 @@
                 </div>
               </div>
               <p class="text-sm font-medium text-slate-400">
-                <span class="text-white font-bold">5000+ Students</span> trained
-                successfully
+                <span class="text-white font-bold" data-countup="5000"
+                  >5000</span
+                >+ Students trained successfully
               </p>
             </div>
           </div>
 
-          <!-- =============================================
-               TASK 2 — HERO IMAGE
-               CHANGE HERO IMAGE HERE
-               Replace the src below with your own image path.
-               Example: src="assets/hero-banner.jpg"
-               Recommended size: 800x600px or wider, any format (jpg/png/webp)
-               ============================================= -->
-          <div class="relative">
+          <!-- CHANGE HERO IMAGE HERE — replace assets/hacker.jpeg with your image path -->
+          <div class="relative hero-image-col">
             <div
               class="absolute -inset-4 bg-primary/20 rounded-full blur-3xl opacity-20"
             ></div>
             <img
-              class="relative rounded-3xl border border-primary/20 shadow-2xl shadow-primary/10"
+              class="relative rounded-3xl border border-primary/20 shadow-2xl shadow-primary/10 w-full h-full hero-img-glow hero-scanline"
               alt="High-tech futuristic hacker workstation with multiple monitors"
-              src="assets/hacker.jpeg"
+              src="assets/joker.jpg"
             />
-            <!-- CHANGE HERO IMAGE HERE — replace the src URL above with your image path -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- =============================================
-         TASK 4 — ENROLLMENT POPUP (bottom-left, auto-rotating)
-         HOW TO EDIT:
-           - Names & locations: edit the enrollmentNotifications array in the JS at the bottom
-           - Timing (how often it changes): change the 5000 value (milliseconds) in the JS
-           - Styling: edit the HTML structure below
-         ============================================= -->
+    <!-- ENROLLMENT POPUP -->
     <div id="enrollment-popup" class="fixed bottom-6 left-6 z-40 hidden">
       <div
         class="enrollment-popup bg-background-dark/95 border border-primary/30 p-4 rounded-xl shadow-2xl flex items-center gap-4 backdrop-blur-md max-w-xs"
@@ -544,6 +744,20 @@
               </p>
             </div>
           </div>
+
+          <!-- =============================================
+               CRO CHANGE 4 — VALUE RE-ANCHOR BELOW BONUSES
+               ============================================= -->
+          <div class="text-center mt-10">
+            <p class="text-slate-400 text-sm">
+              Everything above — community, toolkit, certificate — is included
+              at
+              <span class="text-white font-bold">&#8377;9</span>.
+              <span class="text-slate-500 line-through ml-1"
+                >Total value: &#8377;1,999+</span
+              >
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -630,7 +844,6 @@
           </div>
         </div>
 
-        <!-- Student Testimonials -->
         <div class="mb-8 text-center">
           <h3 class="text-2xl font-black text-white mb-2">
             Student Testimonials
@@ -675,7 +888,6 @@
               <p class="text-white font-bold text-sm">Gaurav</p>
             </div>
           </a>
-
           <a
             href="https://www.youtube.com/shorts/hZDIok286Dk"
             target="_blank"
@@ -710,7 +922,6 @@
               <p class="text-white font-bold text-sm">Khadvi</p>
             </div>
           </a>
-
           <a
             href="https://www.youtube.com/shorts/qSelaOHKoek"
             target="_blank"
@@ -745,7 +956,6 @@
               <p class="text-white font-bold text-sm">Pratik</p>
             </div>
           </a>
-
           <a
             href="https://www.youtube.com/shorts/5eiME3ndOHE"
             target="_blank"
@@ -793,7 +1003,7 @@
               <div
                 class="absolute inset-0 bg-primary/20 blur-2xl rounded-full"
               ></div>
-              <!-- CHANGE TRAINER PHOTO HERE — replace assets/trainer.jpg with your photo path -->
+              <!-- CHANGE TRAINER PHOTO HERE — replace assets/trainer.jpg -->
               <img
                 class="relative w-full aspect-square object-cover rounded-[2rem] border-2 border-primary/30"
                 alt="Anand Kumar Choubey speaking at a cybersecurity event"
@@ -825,13 +1035,14 @@
               Through practical workshops and live training sessions,
               <span class="text-white font-bold">Anand Kumar Choubey</span> has
               trained more than
-              <span class="text-primary font-bold">5000+ students</span> across
-              India and internationally, helping them build foundational
-              knowledge in ethical hacking, cybersecurity, and digital security.
-              With a focus on simple explanations and real-world examples, his
-              goal is to make cybersecurity accessible for students, beginners,
-              and professionals who want to start their journey in ethical
-              hacking.<br /><br />
+              <span class="text-primary font-bold" data-countup="5000"
+                >5000</span
+              >+ students across India and internationally, helping them build
+              foundational knowledge in ethical hacking, cybersecurity, and
+              digital security. With a focus on simple explanations and
+              real-world examples, his goal is to make cybersecurity accessible
+              for students, beginners, and professionals who want to start their
+              journey in ethical hacking.<br /><br />
               Helped thousands of students start their cybersecurity journey
               through practical workshops.
               <br /><br />
@@ -940,13 +1151,22 @@
           <h2 class="text-4xl sm:text-5xl font-black text-background-dark mb-6">
             Start Your Ethical Hacking Journey Today
           </h2>
+
+          <!-- =============================================
+               CRO CHANGE 5 — SOCIAL PROOF + NEXT BATCH PRICING
+               ============================================= -->
           <p
-            class="text-background-dark/80 text-lg font-bold mb-10 max-w-xl mx-auto"
+            class="text-background-dark/80 text-lg font-bold mb-3 max-w-xl mx-auto"
           >
-            Don't wait for the next breach to happen. Secure your spot in the
-            most practical hacking workshop.
+            Join 5000+ students who started at &#8377;9. The price won't stay
+            here after this batch.
           </p>
-          <!-- RAZORPAY: Final CTA — TASK 3: cta-pulse animation added -->
+          <p
+            class="text-background-dark/60 text-sm font-medium mb-10 max-w-md mx-auto"
+          >
+            Next batch will be priced at standard rate of &#8377;499.
+          </p>
+
           <a
             href="https://pages.razorpay.com/pl_SMfcCRhZwQv49d/view"
             target="_blank"
@@ -970,7 +1190,7 @@
         >
           <div>
             <div class="flex items-center gap-2 mb-4">
-              <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png with your logo path -->
+              <!-- CHANGE YOUR LOGO FILE HERE — replace assets/logo.png -->
               <img
                 src="assets/logo.png"
                 alt="CYBRIGE Logo"
@@ -982,11 +1202,9 @@
               >
             </div>
             <p class="text-slate-500 text-sm">
-              &#169; 2023 Cybrige Solutions. All rights reserved.
+              &#169; 2026 Cybrige Solutions. All rights reserved.
             </p>
           </div>
-
-          <!-- SOCIAL MEDIA ICONS — Footer -->
           <div class="flex gap-4">
             <a
               href="https://www.facebook.com/cybrigesolutions?rdid=2P8ErBdIiYsLSKdJ&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AYoUtbFND%2F#"
@@ -1075,21 +1293,18 @@
     </a>
 
     <!-- =============================================
-         COUNTDOWN TIMER — JavaScript
-         CHANGE: Update the deadline date to your actual workshop date/time.
-         Format: 'YYYY-MM-DDTHH:MM:SS+05:30'  (IST = +05:30)
+         COUNTDOWN TIMER
+         CHANGE: Update deadline to your workshop date/time (IST)
+         Format: 'YYYY-MM-DDTHH:MM:SS+05:30'
          ============================================= -->
     <script>
       (function () {
         "use strict";
-
         function pad(n) {
           return String(n).padStart(2, "0");
         }
-
         // CHANGE THIS DATE to your actual workshop date and time (IST)
-        var deadline = new Date("2026-03-25T18:00:00+05:30").getTime();
-
+        var deadline = new Date("2026-03-29T18:00:00+06:00").getTime();
         function tick() {
           var diff = deadline - Date.now();
           if (diff < 0) diff = 0;
@@ -1101,39 +1316,21 @@
           document.getElementById("hero-mins").textContent = pad(mm);
           document.getElementById("hero-secs").textContent = pad(ss);
         }
-
         tick();
         setInterval(tick, 1000);
       })();
     </script>
 
     <!-- =============================================
-         TASK 4 — ENROLLMENT POPUP JavaScript
-         
-         HOW TO CUSTOMIZE:
-         1. CHANGE NAMES & LOCATIONS:
-            Edit the enrollmentNotifications array below.
-            Each entry is: "Name just joined from City"
-            You can add, remove, or change any entry.
-         
-         2. CHANGE POPUP TIMING:
-            Find the line: var POPUP_INTERVAL = 5000;
-            Change 5000 to any number of milliseconds.
-            5000 = 5 seconds, 8000 = 8 seconds, etc.
-         
-         3. CHANGE HOW LONG POPUP STAYS VISIBLE:
-            Find: var POPUP_VISIBLE = 3500;
-            Change 3500 to how long (ms) it should stay before hiding.
+         ENROLLMENT POPUP
+         CHANGE NAMES: edit enrollmentNotifications array
+         CHANGE INTERVAL: edit POPUP_INTERVAL (ms)
+         CHANGE DURATION: edit POPUP_VISIBLE (ms)
          ============================================= -->
     <script>
       (function () {
         "use strict";
 
-        // =============================================
-        // EDIT NAMES AND LOCATIONS HERE
-        // Add or change entries in this array.
-        // Format: "Name just joined from City"
-        // =============================================
         var enrollmentNotifications = [
           "Rahul just joined from Mumbai",
           "Priya just joined from Delhi",
@@ -1167,13 +1364,8 @@
           "Harshit just joined from Ranchi",
         ];
 
-        // =============================================
-        // CHANGE POPUP TIMING HERE
-        // POPUP_INTERVAL: how often a new notification appears (milliseconds)
-        // POPUP_VISIBLE:  how long the popup stays visible before sliding away
-        // =============================================
-        var POPUP_INTERVAL = 5000; // 5 seconds between each notification
-        var POPUP_VISIBLE = 3500; // popup stays visible for 3.5 seconds
+        var POPUP_INTERVAL = 5000;
+        var POPUP_VISIBLE = 3500;
 
         var popup = document.getElementById("enrollment-popup");
         var textEl = document.getElementById("enrollment-text");
@@ -1183,36 +1375,81 @@
         var hideTimer = null;
 
         function showNotification() {
-          // Pick next entry (cycles through the array)
           currentIndex = (currentIndex + 1) % enrollmentNotifications.length;
           textEl.textContent = enrollmentNotifications[currentIndex];
-
-          // Reset animation by removing and re-adding the class
           var inner = popup.querySelector(".enrollment-popup");
           inner.classList.remove("hide");
-
-          // Show the popup
           popup.classList.remove("hidden");
-
-          // Force reflow so animation restarts
           void inner.offsetWidth;
-
-          // Hide after POPUP_VISIBLE milliseconds
           if (hideTimer) clearTimeout(hideTimer);
           hideTimer = setTimeout(function () {
             inner.classList.add("hide");
-            // After slide-down animation finishes, hide the element
             setTimeout(function () {
               popup.classList.add("hidden");
             }, 380);
           }, POPUP_VISIBLE);
         }
 
-        // Wait 2 seconds before showing the first one, then repeat every POPUP_INTERVAL
         setTimeout(function () {
           showNotification();
           setInterval(showNotification, POPUP_INTERVAL);
         }, 2000);
+      })();
+    </script>
+
+    <!-- =============================================
+     COUNT-UP ANIMATION — Scroll triggered
+     HOW TO USE: Add data-countup="5000" to any element
+     It will count from 0 to that number when scrolled into view
+     ============================================= -->
+    <script>
+      (function () {
+        "use strict";
+
+        function animateCountUp(el) {
+          var target = parseInt(el.getAttribute("data-countup"), 10);
+          var duration = 1800; // ms — change to make faster/slower
+          var start = null;
+
+          // Easing: ease-out cubic
+          function easeOut(t) {
+            return 1 - Math.pow(1 - t, 3);
+          }
+
+          function step(timestamp) {
+            if (!start) start = timestamp;
+            var elapsed = timestamp - start;
+            var progress = Math.min(elapsed / duration, 1);
+            var current = Math.floor(easeOut(progress) * target);
+
+            el.textContent = current.toLocaleString("en-IN");
+
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              el.textContent = target.toLocaleString("en-IN");
+            }
+          }
+
+          requestAnimationFrame(step);
+        }
+
+        // Observe all elements with data-countup attribute
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting && !entry.target.dataset.counted) {
+                entry.target.dataset.counted = "true"; // run only once
+                animateCountUp(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 },
+        ); // fires when 50% of element is visible
+
+        document.querySelectorAll("[data-countup]").forEach(function (el) {
+          observer.observe(el);
+        });
       })();
     </script>
   </body>
